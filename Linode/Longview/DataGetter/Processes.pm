@@ -93,6 +93,7 @@ sub get {
 	for my $proc (@procs) {
 		my %info = process_info($proc);
 		next if ( !%info );    # no such proc, it probably died while we were gathering info
+		next if ( !${info{user}}); #no such user 
 		next if ( $info{ppid} == 2 );
 		next if ( $info{pid} == 2 );
 		$info{name} =~ s/\./\\\./g;
